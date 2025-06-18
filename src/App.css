@@ -1,0 +1,284 @@
+/* MongoDB Official Brand Color Theme */
+:root {
+  --mongodb-green: #00684A;
+  --mongodb-light-green: #4DB33D;
+  --mongodb-dark-green: #3FA037;
+  --mongodb-forest: #3F3E42;
+  --mongodb-light-gray: #E8E7D5;
+  --mongodb-medium-gray: #C1BEBC;
+  --mongodb-dark-gray: #3F3E42;
+  --mongodb-white: #ffffff;
+  --mongodb-shadow: rgba(63, 62, 66, 0.1);
+  --mongodb-light-shadow: rgba(77, 179, 61, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--mongodb-light-gray) 0%, #f5f5f5 100%);
+  min-height: 100vh;
+  color: var(--mongodb-forest);
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  color: var(--mongodb-forest);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.questions-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+/* Desktop - 4 columns */
+@media (min-width: 1200px) {
+  .questions-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Large tablet - 3 columns */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .questions-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet - 2 columns */
+@media (min-width: 600px) and (max-width: 899px) {
+  .questions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile - 1 column */
+@media (max-width: 599px) {
+  .questions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.question-card {
+  background: var(--mongodb-white);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px var(--mongodb-shadow);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  width: 100%;
+}
+
+.question-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(63, 62, 66, 0.15);
+  border-color: var(--mongodb-light-green);
+}
+
+.question-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--mongodb-forest);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.option-btn {
+  flex: 1;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid var(--mongodb-medium-gray);
+  background: var(--mongodb-white);
+  color: var(--mongodb-forest);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.option-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-color: var(--mongodb-light-green);
+}
+
+.option-btn.selected {
+  background: var(--mongodb-green);
+  border-color: var(--mongodb-green);
+  color: var(--mongodb-white);
+  box-shadow: 0 4px 15px var(--mongodb-light-shadow);
+}
+
+.option-btn.selected::before {
+  content: '✓';
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, var(--mongodb-green) 0%, var(--mongodb-dark-green) 100%);
+  color: var(--mongodb-white);
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px var(--mongodb-light-shadow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 104, 74, 0.4);
+  background: linear-gradient(135deg, var(--mongodb-dark-green) 0%, var(--mongodb-light-green) 100%);
+}
+
+.submit-btn:active {
+  transform: translateY(-1px);
+}
+
+.result, .error {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 1rem auto;
+  max-width: 600px;
+}
+
+.result {
+  background: linear-gradient(135deg, var(--mongodb-green) 0%, var(--mongodb-dark-green) 100%);
+  color: var(--mongodb-white);
+  box-shadow: 0 6px 20px var(--mongodb-light-shadow);
+}
+
+.error {
+  background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+  color: var(--mongodb-white);
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.question-card {
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: calc(var(--card-index) * 0.1s);
+}
+
+/* Progress indicator */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 104, 74, 0.2);
+  border-radius: 3px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mongodb-green), var(--mongodb-light-green));
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Ensure no horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .question-card {
+    padding: 1.5rem;
+    min-height: 200px;
+  }
+  
+  .question-text {
+    font-size: 1rem;
+  }
+  
+  .option-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .submit-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+}
