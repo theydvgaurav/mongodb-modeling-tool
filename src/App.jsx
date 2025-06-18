@@ -69,10 +69,37 @@ function App() {
       return;
     }
 
-    const isEmbedding = embeddingYesKeys.every(k => answers[k] === 'yes') &&
-                        embeddingNoKeys.every(k => answers[k] === 'no');
+    let embeddingPoints = 0;
+    let referencePoints = 0;
+
+    // Count points for each question
+    Object.keys(answers).forEach(key => {
+      if (embeddingYesKeys.includes(key)) {
+        // For embedding-favorable questions: "yes" = +1 for embedding, "no" = +1 for reference
+        if (answers[key] === 'yes') {
+          embeddingPoints++;
+        } else {
+          referencePoints++;
+        }
+      } else if (embeddingNoKeys.includes(key)) {
+        // For embedding-unfavorable questions: "no" = +1 for embedding, "yes" = +1 for reference
+        if (answers[key] === 'no') {
+          embeddingPoints++;
+        } else {
+          referencePoints++;
+        }
+      }
+    });
+
     setError('');
-    setResult(isEmbedding ? '✅ Recommended Strategy: Embed' : '📂 Recommended Strategy: Reference');
+    
+    if (embeddingPoints > referencePoints) {
+      setResult(`✅ Recommended Strategy: Embed (${embeddingPoints}/11 points)`);
+    } else if (referencePoints > embeddingPoints) {
+      setResult(`📂 Recommended Strategy: Reference (${referencePoints}/11 points)`);
+    } else {
+      setResult(`⚖️ Tie Score (${embeddingPoints}-${referencePoints}): Consider both approaches based on your specific use case`);
+    }
   };
 
   const progressPercentage = (Object.keys(answers).length / questions.length) * 100;
